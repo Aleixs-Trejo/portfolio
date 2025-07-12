@@ -9,11 +9,10 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://aleixs-trejo.github.io',
   base: '/portfolio',
-
   vite: {
     plugins: [tailwindcss()]
   },
 
   integrations: [preact()],
-  adapter: vercel()
+  adapter: vercel(),
 });
