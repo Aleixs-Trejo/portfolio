@@ -1,0 +1,51 @@
+---
+// Assets
+import heroImage from '@assets/img/alesis-mango-hero.webp';
+import iconLinkedin from '@assets/icon/icon-linkedin.svg';
+import iconGithub from '@assets/icon/icon-github.svg';
+import iconCv from '@assets/icon/icon-cv.svg';
+
+// Components
+import SectionContainer from '../SectionContainer.astro';
+import HeroLink from '../HeroLink.astro';
+
+// Array
+const heroLinks = [
+  { icon: iconLinkedin, title: 'Linkedin', href: 'https://www.linkedin.com/in/alexis-trejo-b60437202/' },
+  { icon: iconGithub, title: 'Github', href: 'https://github.com/Aleixs-Trejo' },
+  { icon: iconCv, title: 'CV', href: '/cv/CV-JOSE-ALEXIS-TREJO-BURGA-2025.pdf', download: true },
+];
+---
+
+<SectionContainer data-section="inicio" id="inicio" additionalClass='overflow-hidden'>
+  <div class="w-9/10 max-w-2xl mx-auto">
+    <div class="flex flex-col items-center gap-3 w-full md:flex-row md:gap-8">
+      <figure class="hero__figure w-figure-hero overflow-hidden rounded-full shrink-0 anim-fade-viewport">
+        <img
+          src={heroImage.src}
+          alt="Image Hero Alesis"
+          class="w-full object-cover object-center"
+        />
+      </figure>
+      <div class="w-full flex flex-col gap-3 items-center md:items-start">
+        <span class="text-white anim-fade-viewport">Hola, soy</span>
+        <h1 class="text-cyan-primary text-4xl font-semibold anim-fade-viewport">Alesis Trejo</h1>
+        <p class="text-white anim-fade-viewport">
+          Desarrollador Frontend con 4 años de experiencia maquetando y programando
+          sitios web a medida usando las mejores tecnologías y metodologías.
+        </p>
+        <div class="flex items-center justify-between gap-3 w-3/5 mx-auto md:mx-0 md:justify-start">
+          {heroLinks.map(link => <HeroLink {...link} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+</SectionContainer>
+<style is:inline>
+  .hero__figure {
+    box-shadow: 1px 1px 12px -4px var(--color-cyan-primary);
+    & img {
+      mask-image: linear-gradient(to top, transparent, black 40%);
+    }
+  }
+</style>

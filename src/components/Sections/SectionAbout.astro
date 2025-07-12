@@ -1,0 +1,87 @@
+---
+// Components
+import SectionContainer from '../SectionContainer.astro';
+import CardTech from '../CardTech.astro';
+
+// Assets
+import iconAstro from '@assets/img/astro_dark.svg';
+import iconBlender from '@assets/img/blender.svg';
+import iconCSS from '@assets/img/css.svg';
+import iconDocker from '@assets/img/docker.svg';
+import iconExpress from '@assets/img/expressjs_dark.svg';
+import iconFigma from '@assets/img/figma.svg';
+import iconGit from '@assets/img/git.svg';
+import iconGithub from '@assets/img/github_dark.svg';
+import iconGodot from '@assets/img/godot_engine.svg';
+import iconHTML5 from '@assets/img/html5.svg';
+import iconJavascript from '@assets/img/javascript.svg';
+import iconJWT from '@assets/img/jwt.svg';
+import iconMongo from '@assets/img/mongodb.svg';
+import iconNest from '@assets/img/nestjs.svg';
+import iconNode from '@assets/img/nodejs.svg';
+import iconNpm from '@assets/img/npm.svg';
+import iconPnpm from '@assets/img/pnpm_dark.svg';
+import iconPreact from '@assets/img/preact.svg';
+import iconReact from '@assets/img/react_dark.svg';
+import iconTailwind from '@assets/img/tailwindcss.svg';
+import iconTypescript from '@assets/img/typescript.svg';
+import iconVercel from '@assets/img/vercel_dark.svg';
+import iconVite from '@assets/img/vitejs.svg';
+import iconVscode from '@assets/img/vscode.svg';
+
+// Array
+const tools = [
+  { icon: iconAstro, title: 'Astro', href: 'https://astro.build/' },
+  { icon: iconBlender, title: 'Blender', href: 'https://www.blender.org/' },
+  { icon: iconCSS, title: 'CSS', href: 'https://developer.mozilla.org/es/docs/Web/CSS' },
+  { icon: iconDocker, title: 'Docker', href: 'https://www.docker.com/' },
+  { icon: iconExpress, title: 'Express', href: 'https://expressjs.com/' },
+  { icon: iconFigma, title: 'Figma', href: 'https://www.figma.com/' },
+  { icon: iconGit, title: 'Git', href: 'https://git-scm.com/' },
+  { icon: iconGithub, title: 'Github', href: 'https://github.com/' },
+  { icon: iconGodot, title: 'Godot', href: 'https://godotengine.org/' },
+  { icon: iconHTML5, title: 'HTML5', href: 'https://developer.mozilla.org/es/docs/Web/HTML' },
+  { icon: iconJavascript, title: 'Javascript', href: 'https://developer.mozilla.org/es/docs/Web/JavaScript' },
+  { icon: iconJWT, title: 'JWT', href: 'https://jwt.io/' },
+  { icon: iconMongo, title: 'Mongo', href: 'https://www.mongodb.com/' },
+  { icon: iconNest, title: 'Nest', href: 'https://nestjs.com/' },
+  { icon: iconNode, title: 'Node', href: 'https://nodejs.org/' },
+  { icon: iconNpm, title: 'NPM', href: 'https://www.npmjs.com/' },
+  { icon: iconPnpm, title: 'PNPM', href: 'https://pnpm.io/' },
+  { icon: iconPreact, title: 'Preact', href: 'https://preactjs.com/' },
+  { icon: iconReact, title: 'React', href: 'https://reactjs.org/' },
+  { icon: iconTailwind, title: 'Tailwind', href: 'https://tailwindcss.com/' },
+  { icon: iconTypescript, title: 'Typescript', href: 'https://www.typescriptlang.org/' },
+  { icon: iconVercel, title: 'Vercel', href: 'https://vercel.com/' },
+  { icon: iconVite, title: 'Vite', href: 'https://vitejs.dev/' },
+  { icon: iconVscode, title: 'VSCode', href: 'https://code.visualstudio.com/' },  
+];
+---
+
+<SectionContainer id="sobre" data-section="sobre" additionalClass='bg-dark-secondary overflow-hidden'>
+  <div class="w-9/10 max-w-2xl mx-auto">
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 w-full">
+        <h2 class="text-white text-clamp-title-section anim-fade-viewport max-w-full">Sobre mí</h2>
+        <div class="flex flex-col anim-fade-viewport">
+          <p class="text-white">
+            Soy un desarrollador 100% autodidacta que sigue la filosofía
+            mobile-first y de diseño fluido. Mi enfoque asegura que el contenido
+            siempre se adapte perfectamente al espacio disponible, ofreciendo
+            una excelente experiencia de usuario sin inconvenientes.
+          </p>
+          <p class="text-white">
+            Tengo también conocimientos de tecnologías backend, estoy
+            constantemente mejorando mis habilidades y practicando!
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center gap-4 w-full">
+        <h2 class="text-white text-clamp-title-section anim-fade-viewport max-w-full">Herramientas</h2>
+        <ul class="w-full max-w-lg grid gap-4 md:max-w-none xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {tools.map(tool => <CardTech {...tool} />)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</SectionContainer>

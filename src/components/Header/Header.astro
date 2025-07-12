@@ -1,0 +1,37 @@
+---
+// Assets
+import logoHeader from "@assets/icon/logo-code-alesis-cyan-160.svg";
+
+// Array
+const navLinks = [
+  { href: "#inicio", title: "Inicio" },
+  { href: "#sobre", title: "Sobre mí" },
+  { href: "#trabajos", title: "Trabajos" },
+  { href: "#servicios", title: "Servicios" },
+  { href: "#contacto", title: "Contacto" },
+];
+---
+
+<header id="desktop-header" class="w-full h-header fixed inset-x-0 top-0 z-10 transition-transform duration-300 ease-in-out bg-dark-primary hidden md:block">
+  <div class="w-full max-w-2xl mx-auto flex h-full justify-between items-center">
+    <a href="/portfolio">
+      <img
+        src={logoHeader.src}
+        alt="Logo Alesis"
+        class="w-header-logo h-auto object-contain object-center"
+      />
+    </a>
+    <div class="flex items-center gap-4">
+      {navLinks.map(({ href, title }) => (
+        <a
+          href={href}
+          class="text-white text-start text-base font-semibold transition-colors duration-300 ease-in-out hover:text-cyan-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {title}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>

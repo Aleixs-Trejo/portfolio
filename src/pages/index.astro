@@ -1,16 +1,19 @@
 ---
+// Layout
+import Layout from '@layouts/Layout.astro';
 
+// Components
+import SectionHero from '@components/Sections/SectionHero.astro';
+import SectionAbout from '@components/Sections/SectionAbout.astro';
+import SectionProjects from '@components/Sections/SectionProjects.astro';
+import SectionServices from '@components/Sections/SectionServices.astro';
+import SectionContact from '@components/Sections/SectionContact.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <SectionHero />
+  <SectionAbout />
+  <SectionProjects />
+  <SectionServices />
+  <SectionContact />
+</Layout>

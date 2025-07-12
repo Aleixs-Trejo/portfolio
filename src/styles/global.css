@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font Family */
+  --font-family-primary: "Poppins", sans-serif;
+
+  /* Colors */
+  --color-cyan-primary: #0096C7;
+  --color-dark-primary: #0f0f0f;
+  --color-dark-secondary: #161616;
+  --color-dark-tertiary: #101116;
+  --color-dark-quaternary: #191B22;
+  --color-gray-primary: #414458;
+
+  /* Spacing */
+  --spacing-header: 80px;
+  --spacing-main: calc(100dvh - var(--spacing-header));
+  --spacing-nav: clamp(220px, 90%, 680px);
+  --spacing-section: calc(min(100dvh, 40rem) - var(--spacing-header));
+  --spacing-figure-hero: clamp(10rem, 50%, 15rem);
+  --spacing-img-card: clamp(2rem, 50%, 5rem);
+  --spacing-gap-card: clamp(0rem, 4dvw, 1rem);
+  --spacing-footer-logo: clamp(5rem, 50vw, 15rem);
+  --spacing-header-logo: clamp(8rem, 15vw, 10rem);
+  
+  /* Font Size */
+  --text-clamp-title-section: clamp(1.25rem, 4vw, 1.75rem);
+
+  /* Breakpoints */
+  --breakpoint-xs: 15rem;
+}
+
+.anim-fade-viewport {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.anim-fade-in {
+  opacity: 1;
+  max-width: 100%;
+  transform: translateY(0);
+}
+
+
+.anim-fade-out-to-top {
+  opacity: 0;
+  transform: translateY(-3rem);
+}
+
+.anim-fade-out-to-bottom {
+  opacity: 0;
+  transform: translateY(3rem);
+}
+
+.form__input:focus + label,
+.form__input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) translateX(-0.5rem);
+  font-size: 0.7rem;
+  color: var(--color-cyan-primary);
+}
+
+.form__input--line {
+  background-color: var(--color-cyan-primary);
+  transform: scaleX(0);
+}
+
+.form__input:focus ~ .form__input--line,
+.form__input:not(:placeholder-shown) + .form__input--line {
+  transform: scaleX(1);
+}

@@ -1,0 +1,24 @@
+---
+// Components
+import SectionContainer from "../SectionContainer.astro";
+import FormContact from "@components/FormContact.tsx";
+---
+
+<SectionContainer
+  id="contacto"
+  data-section="contacto"
+  additionalClass="bg-dark-primary overflow-hidden"
+>
+  <div class="w-9/10 max-w-2xl mx-auto">
+    <div class="flex flex-col gap-8 items-center">
+      <h2
+        class="text-white text-clamp-title-section anim-fade-viewport max-w-full"
+      >
+        ¿Interesado?
+      </h2>
+      <div class="flex w-full">
+        <FormContact client:visible />
+      </div>
+    </div>
+  </div>
+</SectionContainer>

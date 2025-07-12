@@ -1,0 +1,228 @@
+---
+// Styles
+import "@styles/global.css";
+
+// Interface
+interface Props {
+  title?: string;
+  author?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+}
+
+// SEO
+import { siteInfo } from "@libs/consts/siteInfo";
+
+// Props
+const {
+  title = siteInfo.title,
+  author = siteInfo.author,
+  description = siteInfo.description,
+  keywords = siteInfo.keywords,
+  image = siteInfo.image,
+  url = siteInfo.url,
+} = Astro.props;
+
+// Components
+import NavMenu from "@components/Header/NavMenu.astro";
+import Header from "@components/Header/Header.astro";
+import Footer from "@components/Footer/Footer.astro";
+---
+
+<html lang="es" class="scroll-smooth font-family-primary">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#161616" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO -->
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="image" content={image} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content={author} />
+    <link rel="canonical" href={url} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <title>Alesis Trejo | Desarrollador Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="body bg-dark-primary font-family-primary min-h-dvh">
+    <Header />
+    <main class="main min-h-main">
+      <slot />
+    </main>
+    <NavMenu />
+    <Footer />
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Animación por scroll
+      let lastScrollYFadeAnim = window.scrollY;
+      let lastScrollYHeader = window.scrollY;
+
+      const $elements = document.querySelectorAll(".anim-fade-viewport");
+      const desktopHeader = document.getElementById("desktop-header");
+      const mobileNav = document.getElementById("mobile-nav");
+
+      // Inicializar elementos para animación
+      $elements.forEach((el) => {
+        const elTop = el.getBoundingClientRect().top + window.scrollY;
+        elTop < window.scrollY
+          ? el.classList.add("anim-fade-out-to-top")
+          : el.classList.add("anim-fade-out-to-bottom");
+      });
+
+      const observerAnim = new IntersectionObserver(entries => {
+        const currentScrollY = window.scrollY;
+        const scrollDown = window.scrollY > lastScrollYFadeAnim;
+        const scrollUp = window.scrollY < lastScrollYFadeAnim;
+
+        entries.forEach((entry) => {
+          const el = entry.target;
+
+          if (entry.isIntersecting) {
+            el.classList.remove(
+              "anim-fade-out-to-bottom",
+              "anim-fade-out-to-top"
+            );
+            el.classList.add("anim-fade-in");
+          } else {
+            // Sale del viewport
+            el.classList.remove("anim-fade-in");
+            if (scrollDown) {
+              // Desaparece hacia arriba
+              el.classList.add("anim-fade-out-to-top");
+            }
+            if (scrollUp) {
+              // Desaparece hacia abajo
+              el.classList.add("anim-fade-out-to-bottom");
+            }
+          }
+
+          lastScrollYFadeAnim = currentScrollY;
+        });
+      },
+      {
+        root: null,
+        threshold: 0.1,
+      });
+
+      $elements.forEach((el) => observerAnim.observe(el));
+
+      const recheckVisibility = () => {
+        $elements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          const visibleTop = rect.top >= 0;
+          const visibleBottom = rect.bottom <= window.innerHeight - 80;
+
+          if (visibleTop && visibleBottom) {
+            el.classList.remove("anim-fade-out-to-bottom", "anim-fade-out-to-top");
+            el.classList.add("anim-fade-in");
+          }
+        });
+      };
+
+      // Animación de header
+      const handleScrollHeader = () => {
+        const currentScrollY = window.scrollY;
+        const scrollDown = currentScrollY > lastScrollYHeader;
+
+        if (scrollDown) {
+          desktopHeader?.classList.remove("translate-y-0");
+          desktopHeader?.classList.add("-translate-y-full");
+          mobileNav?.classList.remove("translate-y-0");
+          mobileNav?.classList.add("translate-y-full");
+        } else {
+          desktopHeader?.classList.remove("-translate-y-full");
+          desktopHeader?.classList.add("translate-y-0");
+          mobileNav?.classList.remove("translate-y-full");
+          mobileNav?.classList.add("translate-y-0");
+        }
+        lastScrollYHeader = currentScrollY;
+      };
+
+      // Animacion de navegación
+      const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLLIElement>;
+      const sections = document.querySelectorAll(".section-container") as NodeListOf<HTMLElement>;
+      const headerHeight = 80;
+
+      const handleScroll = () => {
+        let currentSection: HTMLElement | null = null;
+        let minOffset = Infinity;
+
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          const offset = Math.abs(rect.top - headerHeight);
+
+          if (rect.top < window.innerHeight && rect.bottom > 0 && offset < minOffset) {
+            minOffset = offset;
+            currentSection = section;
+          }
+        });
+
+        if (!currentSection) return;
+
+        if (currentSection && typeof currentSection === "object" && "dataset" in currentSection) {
+          const sectionName = (currentSection as HTMLElement).dataset.section;
+
+          navLinks.forEach(link => {
+            if (link.dataset.section === sectionName) {
+              link.classList.remove("bg-transparent");
+              link.classList.add("bg-cyan-primary");
+            } else {
+              link.classList.remove("bg-cyan-primary");
+              link.classList.add("bg-transparent");
+            }
+          });
+        }
+      };
+
+      let ticking = false;
+
+      window.addEventListener("load", () => {
+        $elements.forEach((el) => observerAnim.observe(el));
+        recheckVisibility();
+        handleScrollHeader();
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        $elements.forEach((el) => observerAnim.observe(el));
+        recheckVisibility();
+        handleScroll();
+        handleScrollHeader();
+      });
+    });
+  </script>
+</html>

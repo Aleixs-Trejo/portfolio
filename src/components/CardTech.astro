@@ -1,0 +1,34 @@
+---
+// Props
+interface Props {
+  icon: { src: string };
+  title: string;
+  href: string;
+};
+
+const { icon, title, href } = Astro.props;
+---
+
+<li class="card__tech overflow-hidden anim-fade-viewport">
+  <a
+    href={href}
+    class="border-2 border-gray-primary rounded-xl bg-dark-tertiary p-4 aspect-square flex flex-col items-center justify-center gap-gap-card"
+    title={title}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src={icon.src}
+      alt={title}
+      class="w-img-card aspect-square object-contain"
+    />
+    <span class="text-white select-none text-center">{title}</span>
+  </a>
+</li>
+<style is:inline>
+  .card__tech:hover {
+    transform: scale(1.015);
+    box-shadow: 1px 1px 12px -8px #fff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+</style>

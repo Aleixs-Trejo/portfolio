@@ -1,0 +1,67 @@
+---
+// Assets
+import footerLogo from "@assets/icon/logo-code-alesis-cyan-160.svg";
+import iconFacebook from "@assets/icon/icon-facebook-color.svg";
+import iconInstagram from "@assets/icon/icon-instagram-color.svg";
+import iconLinkedin from "@assets/icon/icon-linkedid-color.svg";
+
+// Array
+const navLinks = [
+  { href: "#inicio", title: "Inicio" },
+  { href: "#sobre", title: "Sobre mí" },
+  { href: "#trabajos", title: "Trabajos" },
+  { href: "#servicios", title: "Servicios" },
+  { href: "#contacto", title: "Contacto" },
+];
+
+const socials = [
+  { icon: iconFacebook, href: "https://www.facebook.com/aleixs.trejo.nakano/" },
+  { icon: iconInstagram, href: "https://www.instagram.com/alesis.nakano//" },
+  { icon: iconLinkedin, href: "https://www.linkedin.com/in/alexis-trejo-b60437202/" },
+];
+---
+
+<footer class="w-full max-w-2xl mx-auto pt-8 pb-22 md:pb-0 flex items-center justify-center">
+  <div class="w-full flex flex-col">
+    <div class="flex flex-col items-center gap-6 w-9/10 mx-auto pb-6 md:flex-row md:items-start">
+      <div class="flex flex-col items-center w-full overflow-hidden md:grow md:transform md:-translate-y-4">
+        <img
+          src={footerLogo.src}
+          alt="Logo Alesis"
+          class="w-footer-logo h-auto object-contain object-center"
+        />
+        <i class="text-italic text-white text-xs text-center font-light">"Frontend, Backend y Mundos por explorar"</i>
+      </div>
+      <div class="flex flex-col items-start gap-2 w-full overflow-hidden md:grow md:pl-8">
+        {navLinks.map(({ href, title }) => (
+          <a
+            href={href}
+            class="text-white text-start text-sm font-semibold transition-colors duration-300 ease-in-out hover:text-cyan-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {title}
+          </a>
+        ))}
+      </div>
+      <div class="flex items-center gap-3 w-full overflow-hidden md:grow">
+        {socials.map(({ icon, href }) => (
+          <a
+            href={href}
+            class="w-8 h-8"
+            title="Visitar redes"
+          >
+            <img
+              src={icon.src}
+              alt="Icon Social"
+              class="w-full h-auto object-contain object-center transition-all duration-300 ease-in-out md:grayscale md:hover:grayscale-0"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="w-full p-6 overflow-hidden">
+      <p class="text-gray-300 text-sm text-center">Sitio Desarrollado por <a href="https://github.com/Aleixs-Trejo" class="font-semibold text-white">@Alesis</a>, bajo su marca personal, plantilla de total libre uso a través del repositorio en GitHub.</p>
+    </div>
+  </div>
+</footer>

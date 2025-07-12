@@ -1,0 +1,74 @@
+---
+// Components
+import SectionContainer from "../SectionContainer.astro";
+import CardService from "@components/CardService.astro";
+
+// Assets
+import iconDesign from "@assets/icon/icon-design-website.svg";
+import iconDev from "@assets/icon/icon-laptop.svg";
+import iconWpo from "@assets/icon/icon-wpo.svg";
+import iconSeo from "@assets/icon/icon-seo.svg";
+import iconSmo from "@assets/icon/icon-marketing.svg";
+import iconServer from "@assets/icon/icon-server.svg";
+
+// Array
+const services = [
+  {
+    icon: iconDesign,
+    title: "Diseño Web",
+    description:
+      "Prototipo tus diseños estáticos a medida para web responsiva, óptima y accesible.",
+  },
+  {
+    icon: iconDev,
+    title: "Programación Web",
+    description:
+      "Desarrollo sitios y landing pages para plataformas web. Te ayudo a construir tu sitio de principio a fin bajo las mejores metodologías.",
+  },
+  {
+    icon: iconWpo,
+    title: "WPO",
+    description:
+      "Web Performance Optimization, hago que tus sitios y aplicaciones Web mejoren su tiempo de carga y respuesta."
+  },
+  {
+    icon: iconSeo,
+    title: "SEO",
+    description:
+      "Search Engine Optimization, optimizo tus sitios y aplicaciones Web para que mejoren su posición en los buscadores orgánicamente."
+  },
+  {
+    icon: iconSmo,
+    title: "SMO",
+    description:
+      "Social Media Optimization y Marketing de Contenidos, te ayudo a elegir los canales digitales correctos para llegar a tu audiencia ideal."
+  },
+  {
+    icon: iconServer,
+    title: "Hosting Web",
+    description:
+      "¿No cuentas con dominio y hospedaje para tus proyectos web? No te preocupes, de esas cosas técnicas me encargo yo."
+  }
+];
+---
+
+<SectionContainer
+  id="servicios"
+  data-section="servicios"
+  additionalClass="bg-dark-secondary overflow-hidden"
+>
+  <div class="w-9/10 max-w-2xl mx-auto">
+    <div class="flex flex-col items-center gap-4 w-full">
+      <h2
+        class="text-white text-clamp-title-section anim-fade-viewport max-w-full"
+      >
+        Servicios
+      </h2>
+      <div
+        class="w-full max-w-sm mx-auto grid gap-4 md:max-w-none md:grid-cols-2 lg:grid-cols-3"
+      >
+      {services.map(service => <CardService {...service} />)}
+      </div>
+    </div>
+  </div>
+</SectionContainer>

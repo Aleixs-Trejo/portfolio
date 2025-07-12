@@ -1,0 +1,79 @@
+---
+// Components
+import SectionContainer from '../SectionContainer.astro';
+import CardProject from '@components/CardProject.astro';
+
+// Assets
+import imgWordle from '@assets/img/wordle.webp';
+import imgRolas from '@assets/img/search-rolas.webp';
+import imgInventario from '@assets/img/inventario.webp';
+import imgVite from '@assets/img/vitejs.svg';
+import imgReact from '@assets/img/react_dark.svg';
+import imgNode from '@assets/img/nodejs.svg';
+import imgExpress from '@assets/img/expressjs_dark.svg';
+import imgMongo from '@assets/img/mongodb.svg';
+import imgDocker from '@assets/img/docker.svg';
+import iconGitHub from '@assets/icon/icon-github-cat.svg';
+
+import iconArrow from '@assets/icon/icon-arrow-right-rounded.svg';
+
+// Array
+const projects = [
+  {
+    img: imgWordle,
+    title: 'Wordle (Clon)',
+    description: 'Clon del juego “Wordle”, probando el uso de Context y mucha lógica.',
+    href: 'https://github.com/Aleixs-Trejo/wordle',
+    iconGithub: iconGitHub,
+    techs: [
+      { icon: imgVite, titleTech: 'Vite' },
+      { icon: imgReact, titleTech: 'React' },
+    ],
+  },
+  {
+    img: imgRolas,
+    title: 'Search Rolas',
+    description: 'Buscador de canciones usando la API de Deezer, contiene letra e info.',
+    href: 'https://github.com/Aleixs-Trejo/search-rolas-v3',
+    iconGithub: iconGitHub,
+    techs: [
+      { icon: imgVite, titleTech: 'Vite' },
+      { icon: imgReact, titleTech: 'React' },
+    ],
+  },
+  {
+    img: imgInventario,
+    title: 'Inventario',
+    description: 'Gestión y administración de negocios de ventas y de hotelería.',
+    href: 'https://github.com/Aleixs-Trejo/inventario-aprendedor',
+    iconGithub: iconGitHub,
+    techs: [
+      { icon: imgNode, titleTech: 'Node' },
+      { icon: imgExpress, titleTech: 'Express' },
+      { icon: imgMongo, titleTech: 'MongoDB' },
+      { icon: imgDocker, titleTech: 'Docker' },
+    ],
+  }
+];
+
+---
+
+<SectionContainer id="trabajos" data-section="trabajos" additionalClass='bg-dark-primary overflow-hidden'>
+  <div class="w-9/10 max-w-2xl mx-auto">
+    <div class="flex flex-col items-center gap-8 w-full max-w-full">
+      <h2 class="text-white text-clamp-title-section anim-fade-viewport max-w-full">Mis Proyectos</h2>
+      <div class="w-full max-w-sm mx-auto grid gap-6 md:max-w-none md:grid-cols-2 lg:grid-cols-3">
+        {projects.map(project => <CardProject {...project} />)}
+      </div>
+      <a
+        href="https://github.com/Aleixs-Trejo?tab=repositories"
+        class="max-w-full w-max text-sm flex items-center justify-center gap-2 rounded-xl bg-gray-primary px-6 py-2 text-white overflow-hidden"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver más Proyectos
+        <img src={iconArrow.src} alt="Icon Arrow" class="w-6 h-6 object-contain object-center" />
+      </a>
+    </div>
+  </div>
+</SectionContainer>

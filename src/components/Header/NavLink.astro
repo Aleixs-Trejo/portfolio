@@ -1,0 +1,28 @@
+---
+// Props
+interface Props {
+  href: string;
+  icon: { src: string };
+  title: string;
+  additionalClass?: string;
+  section?: string;
+}
+
+const { href, icon, title, additionalClass, section } = Astro.props;
+---
+
+<li
+  class={`nav-link flex rounded-lg transition-colors duration-300 ease-in-out bg-transparent ${additionalClass ?? ""}`}
+  data-section={section}
+>
+  <a
+    href={href}
+    class="flex flex-col items-center justify-center gap-2 rounded-lg w-8 h-8"
+  >
+    <img
+      src={icon.src}
+      alt={title}
+      class="w-6 h-6 object-contain object-center pointer-events-none"
+    />
+  </a>
+</li>

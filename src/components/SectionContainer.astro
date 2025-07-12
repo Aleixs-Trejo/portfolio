@@ -1,0 +1,17 @@
+---
+// Props
+interface Props {
+  additionalClass?: string;
+  id?: string;
+}
+
+const { additionalClass, id } = Astro.props;
+---
+
+<section
+  class={`section-container min-h-section py-8 flex items-center justify-center ${additionalClass ?? ''}`}
+  id={id}
+  data-section={id}
+>
+  <slot />
+</section>

@@ -1,0 +1,17 @@
+---
+// Props
+interface Props {
+  icon: { src: string };
+  titleTech: string;
+}
+
+const { icon, titleTech } = Astro.props;
+---
+
+<div class="w-8 h-8 rounded-md flex items-center justify-center bg-gray-primary">
+  <img
+    src={icon.src}
+    alt={titleTech}
+    class="w-6 h-6 object-contain object-center"
+  />
+</div>

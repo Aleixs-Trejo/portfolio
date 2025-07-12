@@ -1,0 +1,55 @@
+---
+// Assets
+import iconHome from '@assets/icon/icon-home-outline.svg';
+import iconUser from '@assets/icon/icon-user-outline.svg';
+import iconWork from '@assets/icon/icon-work-outline.svg';
+import iconCode from '@assets/icon/icon-code-outline.svg';
+import iconContact from '@assets/icon/icon-mail-outline.svg';
+
+// Array
+const navLinks = [
+  { href: '#inicio', icon: iconHome, title: 'Inicio', section: 'inicio' },
+  { href: '#sobre', icon: iconUser, title: 'Sobre mí', section: 'sobre' },
+  { href: '#trabajos', icon: iconWork, title: 'Trabajos', section: 'trabajos' },
+  { href: '#servicios', icon: iconCode, title: 'Servicios', section: 'servicios' },
+  { href: '#contacto', icon: iconContact, title: 'Contacto', section: 'contacto' },
+];
+
+// Components
+import NavLink from './NavLink.astro';
+---
+
+<div id="mobile-nav" class="w-full h-header flex items-center justify-center fixed bottom-0 z-5 bg-dark-primary transition-transform duration-300 ease-in-out overflow-hidden md:hidden">
+  <div class="w-9/10 overflow-hidden border-2 border-cyan-primary rounded-4xl p-2">
+    <nav class="flex justify-center w-full">
+      <ul class="flex justify-between items-center gap-1 w-9/10">
+        {navLinks.map(link => <NavLink {...link} />)}
+      </ul>
+    </nav>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const body = document.querySelector(".body") as HTMLBodyElement;
+    const navLinks = document.querySelectorAll(
+      ".nav-link"
+    ) as NodeListOf<HTMLLIElement>;
+
+    navLinks[0].classList.remove("bg-transparent");
+    navLinks[0].classList.add("bg-cyan-primary");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.forEach(otherLink => {
+          otherLink.classList.remove("bg-cyan-primary");
+          otherLink.classList.add("bg-transparent");
+        });
+        link.classList.remove("bg-transparent");
+        link.classList.add("bg-cyan-primary");
+        const sectionName = link.dataset.section;
+        if (!sectionName) return;
+        body.setAttribute("data-section", sectionName);
+      });
+    });
+  });
+</script>
