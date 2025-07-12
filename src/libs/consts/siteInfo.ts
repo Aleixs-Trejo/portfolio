@@ -1,4 +1,4 @@
-import logo from '@assets/icon/logo-code-alesis-cyan.svg';
+import logo from '@assets/img/alesis-mango-hero.webp';
 
 export const siteInfo = {
   title: 'Alesis Trejo - Desarrollador Web',

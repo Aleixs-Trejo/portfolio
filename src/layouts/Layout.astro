@@ -2,6 +2,9 @@
 // Styles
 import "@styles/global.css";
 
+// Assets
+import favicon from "@assets/icon/logo-code-alesis-cyan-160.svg";
+
 // Interface
 interface Props {
   title?: string;
@@ -34,7 +37,7 @@ import Footer from "@components/Footer/Footer.astro";
 <html lang="es" class="scroll-smooth font-family-primary">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={favicon.src} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#161616" />
